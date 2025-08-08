@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "GitHub Collaborator Manager",
+  "name_for_model": "github_collaborator_manager",
+  "description_for_human": "Easily add, remove, and list collaborators for GitHub repositories.",
+  "description_for_model": "Plugin for managing GitHub repository collaborators. Supports adding, removing, and listing collaborators via GitHub's REST API.",
+  "auth": {
+    "type": "oauth",
+    "client_url": "https://localhost:8000/login",
+    "scope": "repo"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://aqbgithub.s3.us-west-2.amazonaws.com/openapi.json"
+  }
+  
+}
