@@ -34,16 +34,3 @@ jobs:
           curl http://127.0.0.1:8000/openapi.json -o openapi.json
           pkill -f uvicorn
 
-      # Upload ai-plugin.json, openapi.json, and logo.png to S3
-      # - name: Upload to S3
-      #   run: |
-      #     aws s3 cp .well-known/ai-plugin.json s3://$S3_BUCKET_NAME/ai-plugin.json --acl public-read
-      #     aws s3 cp openapi.json s3://$S3_BUCKET_NAME/openapi.json --acl public-read
-      #     if [ -f logo.png ]; then
-      #       aws s3 cp logo.png s3://$S3_BUCKET_NAME/logo.png --acl public-read
-      #     fi
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-      #     S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
