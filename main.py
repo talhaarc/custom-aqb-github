@@ -36,7 +36,8 @@ class clientAdd(BaseModel):
 @app.get("/login")
 def login_url():
     urltoRedirect = f"https://github.com/login/oauth/authorize?client_id={CLIENT_ID}&scope=repo"
-    return RedirectResponse(urltoRedirect)
+    return {"login_url": urltoRedirect}
+    # return RedirectResponse(urltoRedirect)
 @app.get("/callback")
 def callback(request: Request, code: str):
     bearer_url = "https://github.com/login/oauth/access_token"
