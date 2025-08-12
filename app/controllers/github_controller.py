@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, HTTPException
 from app.utils import auth, parser
 from app.services import github_req_maker
-from models import github_model
+from app.models import github_model
 
 router = APIRouter()
 
