@@ -1,15 +1,16 @@
 from fastapi import APIRouter, Request, HTTPException
 from app.utils import auth, parser
 from app.services import github_req_maker
+from models import github_model
 
 router = APIRouter()
 
 @router.post("/addCollab")
-def add_client(repository: str, username: str, permission: str = "pull", currentUser: str = "", request: Request = None):
+def add_client(client: github_model.ClientAdd, currentUser: str = "", request: Request = None):
     token = auth.get_github_token(request)
-    owner, repo = parser.parse_repo(repository)
-    payload = {"permission": permission}
-    status, message = github_req_maker.git_request("PUT", f"/repos/{owner}/{repo}/collaborators/{username}", token, payload)
+    owner, repo = parser.parse_repo(client.repository)
+    payload = {"permission": client.permission}
+    status, message = github_req_maker.git_request("PUT", f"/repos/{owner}/{repo}/collaborators/{client.username}", token, payload)
     return {"status_code": status, "message": message}
 
 @router.get("/listCollaborators")
