@@ -1,0 +1,40 @@
+name: Deploy FastAPI Lambda
+
+on:
+  push:
+    branches:
+      - main  # Change to your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"  # Or the version your Lambda uses
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt -t ./package
+          cp -r . ./package
+
+      - name: Zip deployment package
+        run: |
+          cd package
+          zip -r ../deployment.zip .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            role-to-assume: arn:aws:iam::226732809537:role/service-role/githubPluginMaker-role-wg2nijs5
+
+      - name: Deploy to AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name githubPluginMaker \
+            --zip-file fileb://deployment.zip
