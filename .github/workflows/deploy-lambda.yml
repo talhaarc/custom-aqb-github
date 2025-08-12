@@ -37,6 +37,16 @@ jobs:
         with:
             role-to-assume: arn:aws:iam::226732809537:role/githubdeployaccess
             aws-region: us-east-1
+
+      - name: Debug OIDC token
+        run: |
+            TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+            echo $TOKEN | cut -d "." -f2 | base64 -d | jq
+        env:
+            ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
+            ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+
+            
       - name: Deploy to AWS Lambda
         run: |
           aws lambda update-function-code \
