@@ -44,7 +44,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
             role-to-assume: arn:aws:iam::226732809537:role/githubdeployaccess
-            aws-region: us-east-1
+            aws-region: us-west-2
 
             
       - name: Deploy to AWS Lambda
