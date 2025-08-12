@@ -20,8 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt -t ./package
-          cp -r . ./package
+            pip install -r requirements.txt -t ./package
+            cp -r app ./package/
 
       - name: Zip deployment package
         run: |
