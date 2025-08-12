@@ -32,7 +32,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
             role-to-assume: arn:aws:iam::226732809537:role/service-role/githubPluginMaker-role-wg2nijs5
-
+            aws-region: us-west-2
       - name: Deploy to AWS Lambda
         run: |
           aws lambda update-function-code \
