@@ -1,0 +1,1013 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "GitHub Colab API",
+        "version": "0.1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ezb7wdyxf656tg7m57crk3qcl40fbzda.lambda-url.us-west-2.on.aws",
+            "description": "Production server"
+        }
+    ],
+    "paths": {
+        "/addCollab": {
+            "post": {
+                "summary": "Add Collaborator",
+                "description": "Adds a collaborator to a specified GitHub repository.",
+                "operationId": "add_client",
+                "parameters": [
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientAdd"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Collaborator added successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/listCollaborators": {
+            "get": {
+                "summary": "List Collaborators",
+                "description": "Returns the list of collaborators for a specified repository.",
+                "operationId": "list_collaborators",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the repository whose collaborators you want to list.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of collaborators retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "username": {
+                                                "type": "string"
+                                            },
+                                            "permission": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/removeCollab": {
+            "delete": {
+                "summary": "Remove Collaborator",
+                "description": "Removes a collaborator from a specified GitHub repository.",
+                "operationId": "remove_collaborator",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the repository from which to remove the collaborator.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tobedeleted_user",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the collaborator to remove.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Collaborator removed successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/listPullRequests": {
+            "get": {
+                "summary": "List Pull Requests",
+                "description": "Returns the list of pull requests for a specified GitHub repository.",
+                "operationId": "list_pull_requests",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "GitHub repository in `owner/repo` format.",
+                        "schema": {
+                            "type": "string",
+                            "example": "octocat/Hello-World"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": false,
+                        "description": "Optional identifier for the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of pull requests retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "array",
+                                            "description": "List of pull request objects from GitHub.",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Repository format is incorrect.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository format is incorrect. It should be 'owner/repo'."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No Authorization token provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "No Authorization token provided."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/createPullRequest": {
+            "get": {
+                "summary": "Create Pull Requests",
+                "description": "Creates a pull request for a specified GitHub repository.",
+                "operationId": "create_pull_requests",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "GitHub repository in `owner/repo` format.",
+                        "schema": {
+                            "type": "string",
+                            "example": "octocat/Hello-World"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": false,
+                        "description": "Optional identifier for the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Pull request created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": 201
+                                        },
+                                        "message": {
+                                            "type": "array",
+                                            "description": "List of pull request objects from GitHub.",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Repository format is incorrect.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository format is incorrect. It should be 'owner/repo'."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No Authorization token provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "No Authorization token provided."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/checkIfCollaborator": {
+            "get": {
+                "summary": "Check if user is a collaborator",
+                "description": "Tells if a user is a collaborator.",
+                "operationId": "check_if_collaborator",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "GitHub repository in `owner/repo` format.",
+                        "schema": {
+                            "type": "string",
+                            "example": "octocat/Hello-World"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": false,
+                        "description": "Optional identifier for the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User is a collaborator.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": 204
+                                        },
+                                        "message": {
+                                            "type": "array",
+                                            "description": "User is a collaborator.",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Repository format is incorrect.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository format is incorrect. It should be 'owner/repo'."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No Authorization token provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "No Authorization token provided."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found if user is not a collaborator.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Not a Collaborator."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/createRepository": {
+            "post": {
+                "summary": "Create a GitHub Repository",
+                "description": "Creates a new GitHub repository for the authenticated user. Requires a personal access token with `repo` scope in the Authorization header.\n",
+                "operationId": "create_repository",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the new repository to create.",
+                        "schema": {
+                            "type": "string",
+                            "example": "my-new-repo"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request (for logging purposes).",
+                        "schema": {
+                            "type": "string",
+                            "example": "johndoe"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Repository created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository created successfully."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request - Invalid repositoryName.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository could not be created."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized — no or invalid Authorization token provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "No Authorization token provided."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteRepository": {
+            "delete": {
+                "summary": "Delete a GitHub Repository",
+                "description": "Deletes the specified GitHub repository.   Requires admin access to the repository and a valid personal access token with the `delete_repo` scope.\n",
+                "operationId": "delete_repository",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Full name of the repository in `owner/repo` format.",
+                        "schema": {
+                            "type": "string",
+                            "example": "octocat/Hello-World"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request (for logging purposes).",
+                        "schema": {
+                            "type": "string",
+                            "example": "johndoe"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Repository deleted successfully. No content is returned."
+                    },
+                    "400": {
+                        "description": "Repository format is incorrect.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository format is incorrect. It should be 'owner/repo'."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No Authorization token provided or token invalid."
+                    },
+                    "403": {
+                        "description": "Forbidden — insufficient permissions to delete the repository."
+                    },
+                    "404": {
+                        "description": "Not Found — repository does not exist or you do not have access."
+                    }
+                }
+            }
+        },
+        "/createIssues": {
+            "post": {
+                "summary": "Create an Issue in a GitHub Repository",
+                "description": "Creates a new issue in the specified GitHub repository.",
+                "operationId": "create_issues",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Full name of the repository in `owner/repo` format.",
+                        "schema": {
+                            "type": "string",
+                            "example": "octocat/Hello-World"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request.",
+                        "schema": {
+                            "type": "string",
+                            "example": "johndoe"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": true,
+                        "description": "Title of the new issue.",
+                        "schema": {
+                            "type": "string",
+                            "example": "Bug: Login button not working"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": [
+                            "repo"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Issue created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1347
+                                        },
+                                        "number": {
+                                            "type": "integer",
+                                            "example": 42
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Bug: Login button not working"
+                                        },
+                                        "state": {
+                                            "type": "string",
+                                            "example": "open"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request — repository format is incorrect.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository format is incorrect. It should be 'owner/repo'."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized — no or invalid Authorization token provided."
+                    },
+                    "403": {
+                        "description": "Forbidden — insufficient permissions to create issues in this repository."
+                    },
+                    "404": {
+                        "description": "Not Found — repository does not exist or you do not have access."
+                    }
+                }
+            }
+        },
+        "/editIssue": {
+            "patch": {
+                "summary": "Update an existing GitHub issue",
+                "description": "Updates the title, body, or state of an existing GitHub issue in the specified repository.",
+                "operationId": "edit_issue",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "repositoryName in the format `owner/repo`.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "issue_number",
+                        "in": "query",
+                        "required": true,
+                        "description": "The number of the issue to update.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user making the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": false,
+                        "description": "The updated title for the issue.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Issue updated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "object",
+                                            "description": "Full response from the GitHub API."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request due to invalid repository format or parameters."
+                    },
+                    "401": {
+                        "description": "Unauthorized — missing or invalid authentication token."
+                    },
+                    "404": {
+                        "description": "The specified issue or repository was not found."
+                    }
+                }
+            }
+        },
+        "/createRelease": {
+            "post": {
+                "summary": "Create a new GitHub release",
+                "description": "Creates a new release in the specified repository.",
+                "operationId": "create_release",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "repo"
+                        ]
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The repository in `owner/repo` format."
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The username of the logging user."
+                    },
+                    {
+                        "name": "tag_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The tag name for the release."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Release created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Repository not found."
+                    }
+                }
+            }
+        },
+        "/deleteRelease": {
+            "delete": {
+                "summary": "Delete a GitHub release",
+                "description": "Deletes a release by its release ID in the specified repository.",
+                "operationId": "delete_release",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "repo"
+                        ]
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The repository in `owner/repo` format."
+                    },
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The username of the logging user."
+                    },
+                    {
+                        "name": "release_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the release to delete."
+                    },
+                    {
+                        "name": "tag_name",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Optional tag name of the release."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Release deletion response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Release deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad request."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Release not found."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://github.com/login/oauth/authorize",
+                        "tokenUrl": "https://github.com/login/oauth/access_token",
+                        "scopes": {
+                            "repo": "Full control of private repositories",
+                            "delete_repo": "Delete repositories"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "clientAdd": {
+                "type": "object",
+                "required": [
+                    "repository",
+                    "username"
+                ],
+                "properties": {
+                    "repository": {
+                        "type": "string",
+                        "description": "The name of the repository."
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the collaborator to add."
+                    },
+                    "permission": {
+                        "type": "string",
+                        "nullable": true,
+                        "default": "pull",
+                        "description": "The permission level to grant the collaborator (default is pull)."
+                    }
+                }
+            }
+        }
+    }
+}
