@@ -1110,7 +1110,7 @@
             "get": {
                 "summary": "List Repositories",
                 "description": "Returns the list of repositories for a specified user.",
-                "operationId": "list_repositories",
+                "operationId": "list_repositories_user",
                 "parameters": [
                     {
                         "name": "loggedUser",
