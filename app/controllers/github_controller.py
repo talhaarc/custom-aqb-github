@@ -53,7 +53,7 @@ def check_if_collaborator(repositoryName: str, username: str, request: Request =
 @router.post("/createRepository")
 def create_repository(repositoryName: str, currentUser: str = "", request: Request = None):
     token = auth.get_github_token(request)
-    payload = {"name": repositoryName, "description": "Created by aws lambda function on GitHub"}
+    payload = {"name": repositoryName, "description": "Created by aws lambda function on GitHub", "private": True}
     status, message = github_req_maker.git_request("POST", "/user/repos", token, payload)
     if status >= 400:
         raise HTTPException(status_code=status, detail=message)
@@ -75,6 +75,11 @@ def create_org_repo(repositoryName: str, org: str, request: Request = None):
     status, message = github_req_maker.git_request("POST", f"/orgs/{org}/repos", token, payload)
     if status >= 400:
         raise HTTPException(status_code=status, detail=message)
+    return {"status_code": status, "message": message}
+@router.get("/listRepositories")
+def list_repositories(currentUser: str = "", request: Request = None):
+    token = auth.get_github_token(request)
+    status, message = github_req_maker.git_request("GET", f"/{currentUser}/repos", token)
     return {"status_code": status, "message": message}
 
 # ---------- Issues ----------

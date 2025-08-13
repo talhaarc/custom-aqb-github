@@ -1105,6 +1105,47 @@
                     }
                 }
             }
+        },
+        "/listRepositories": {
+            "get": {
+                "summary": "List Repositories",
+                "description": "Returns the list of repositories for a specified user.",
+                "operationId": "list_repositories",
+                "parameters": [
+                    {
+                        "name": "loggedUser",
+                        "in": "query",
+                        "required": true,
+                        "description": "Username of the user whose repositories you want to list.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of repositories retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/clientAdd"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized — no or invalid Authorization token provided."
+                    }
+                }
+            }
         }
     },
     "components": {
