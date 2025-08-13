@@ -139,3 +139,11 @@ def list_commits(repositoryName: str, currentUser: str = "", request: Request=No
     owner, repo = parser.parse_repo(repositoryName)
     status, message = github_req_maker.git_request("GET", f"/repos/{owner}/{repo}/commits", token)
     return {"status_code": status, "message": message}
+
+# ---------- Organisation ---------
+
+@router.get("/listOrgMembers")
+def list_org_members(org: str, request: Request = None):
+    token = auth.get_github_token(request)
+    status, message = github_req_maker.git_request("GET", f"/orgs/{org}/members", token)
+    return {"status_code": status, "message": message}
