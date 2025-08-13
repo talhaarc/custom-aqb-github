@@ -1021,6 +1021,90 @@
                     }
                 }
             }
+        },
+        "/createOrgRepository": {
+            "post": {
+                "summary": "Create an organisation GitHub Repository",
+                "description": "Creates a new organisation GitHub repository for the authenticated user. Requires a personal access token with `repo` scope in the Authorization header.\n",
+                "operationId": "create_org_repository",
+                "parameters": [
+                    {
+                        "name": "repositoryName",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the new repository to create.",
+                        "schema": {
+                            "type": "string",
+                            "example": "my-new-repo"
+                        }
+                    },
+                    {
+                        "name": "Organisation",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the organisation under which the repository will be created.",
+                        "schema": {
+                            "type": "string",
+                            "example": "johndoe"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Repository created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository created successfully."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request - Invalid repositoryName.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "Repository could not be created."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized — no or invalid Authorization token provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "detail": {
+                                            "type": "string",
+                                            "example": "No Authorization token provided."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {

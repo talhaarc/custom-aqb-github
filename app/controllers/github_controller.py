@@ -68,6 +68,15 @@ def delete_repository(repositoryName: str, currentUser: str = "", request: Reque
         return {"status_code": status, "message": "Repository deleted successfully."}
     return {"status_code": status, "message": message}
 
+@router.post("/createOrgRepository")
+def create_org_repo(repositoryName: str, org: str = "", request: Request = None):
+    token = auth.get_github_token(request)
+    payload = {"name": repositoryName, "description": "Created by aws lambda function on GitHub"}
+    status, message = github_req_maker.git_request("POST", f"/orgs/{org}/repos", token, payload)
+    if status >= 400:
+        raise HTTPException(status_code=status, detail=message)
+    return {"status_code": status, "message": message}
+
 # ---------- Issues ----------
 @router.post("/createIssues")
 def create_issues(repositoryName: str, currentUser: str = "", request: Request = None, title: str = ""):
