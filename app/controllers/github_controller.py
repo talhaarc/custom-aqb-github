@@ -81,6 +81,7 @@ def list_repositories_org(org: str, request: Request = None):
     token = auth.get_github_token(request)
     status, message = github_req_maker.git_request("GET", f"/orgs/{org}/repos", token)
     return {"status_code": status, "message": message}
+
 @router.get("/listRepositoriesUser")
 def list_repositories_user(specifiedUser: str, request: Request = None):
     token = auth.get_github_token(request)
