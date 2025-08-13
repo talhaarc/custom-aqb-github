@@ -1146,6 +1146,47 @@
                     }
                 }
             }
+        },
+        "/listRepositoriesOrg": {
+            "get": {
+                "summary": "List Repositories for an Organization",
+                "description": "Returns the list of repositories for a specified organization.",
+                "operationId": "list_repositories_org",
+                "parameters": [
+                    {
+                        "name": "org",
+                        "in": "query",
+                        "required": true,
+                        "description": "Name of the organization whose repositories you want to list.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "OAuth2": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of repositories retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/clientAdd"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized — no or invalid Authorization token provided."
+                    }
+                }
+            }
         }
     },
     "components": {
