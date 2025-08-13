@@ -1106,7 +1106,7 @@
                 }
             }
         },
-        "/listRepositories": {
+        "/listRepositoriesUser": {
             "get": {
                 "summary": "List Repositories",
                 "description": "Returns the list of repositories for a specified user.",
