@@ -1113,7 +1113,7 @@
                 "operationId": "list_repositories_user",
                 "parameters": [
                     {
-                        "name": "loggedUser",
+                        "name": "specifiedUser",
                         "in": "query",
                         "required": true,
                         "description": "Username of the user whose repositories you want to list.",
