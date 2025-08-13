@@ -110,3 +110,11 @@ def delete_release(repositoryName: str, release_id: int, currentUser: str = "", 
     if status == 204:
         return {"status_code": status, "message": "Release deleted successfully."}
     return {"status_code": status, "message": message}
+
+# ---------- Commits -----------
+@router.get("/listCommits")
+def list_commits(repositoryName: str, currentUser: str = "", request: Request=None):
+    token = auth.get_github_token(request)
+    owner, repo = parser.parse_repo(repositoryName)
+    status, message = github_req_maker.git_request("GET", f"/repos/{owner}/{repo}/commits", token)
+    return {"status_code": status, "message": message}
