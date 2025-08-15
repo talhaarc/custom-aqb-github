@@ -50,7 +50,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listCollaborators": {
@@ -97,7 +102,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/removeCollab": {
@@ -153,7 +163,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listPullRequests": {
@@ -200,7 +215,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/createPullRequest": {
@@ -247,7 +267,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/checkIfCollaborator": {
@@ -293,7 +318,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/createRepository": {
@@ -340,7 +370,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/deleteRepository": {
@@ -387,7 +422,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/createOrgRepository": {
@@ -433,7 +473,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listRepositoriesOrg": {
@@ -470,7 +515,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listRepositoriesUser": {
@@ -507,7 +557,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/createIssues": {
@@ -564,7 +619,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/editIssue": {
@@ -630,7 +690,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/createRelease": {
@@ -687,7 +752,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/deleteRelease": {
@@ -743,7 +813,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listCommits": {
@@ -790,7 +865,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     },
     "/listOrgMembers": {
@@ -827,7 +907,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
       }
     }
   },
@@ -901,6 +986,21 @@
           "type"
         ],
         "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://github.com/login/oauth/authorize",
+            "tokenUrl": "https://github.com/login/oauth/access_token",
+            "scopes": {
+              "repo": "Full control of private repositories",
+              "delete_repo": "Delete repositories"
+            }
+          }
+        }
       }
     }
   },
