@@ -6,7 +6,7 @@ from app.models import github_model
 router = APIRouter()
 
 @router.post("/addCollab")
-def add_client(client: github_model.ClientAdd, currentUser: str = "", request: Request = None):
+def add_client(client: github_model.ClientAdd, request: Request = None):
     token = auth.get_github_token(request)
     owner, repo = parser.parse_repo(client.repository)
     payload = {"permission": client.permission}
