@@ -103,6 +103,16 @@ jobs:
           with open("openapi.json", "w") as f:
               json.dump(schema, f, indent=2)
           EOF
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::226732809537:role/githubdeployaccess
+          aws-region: us-west-2
+
+      - name: Upload OpenAPI file to S3
+        run: |
+          aws s3 cp openapi.json s3://aqbgithub/openapi.json
+
 
     #   - name: Generate OpenAPI schema
     #     run: |
