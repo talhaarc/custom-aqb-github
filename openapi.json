@@ -55,7 +55,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /addCollab"
       }
     },
     "/listCollaborators": {
@@ -107,7 +108,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listCollaborators"
       }
     },
     "/removeCollab": {
@@ -168,7 +170,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "DELETE operation for /removeCollab"
       }
     },
     "/listPullRequests": {
@@ -220,7 +223,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listPullRequests"
       }
     },
     "/createPullRequest": {
@@ -272,7 +276,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /createPullRequest"
       }
     },
     "/checkIfCollaborator": {
@@ -323,7 +328,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /checkIfCollaborator"
       }
     },
     "/createRepository": {
@@ -375,7 +381,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /createRepository"
       }
     },
     "/deleteRepository": {
@@ -427,7 +434,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "DELETE operation for /deleteRepository"
       }
     },
     "/createOrgRepository": {
@@ -478,7 +486,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /createOrgRepository"
       }
     },
     "/listRepositoriesOrg": {
@@ -520,7 +529,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listRepositoriesOrg"
       }
     },
     "/listRepositoriesUser": {
@@ -562,7 +572,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listRepositoriesUser"
       }
     },
     "/createIssues": {
@@ -624,7 +635,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /createIssues"
       }
     },
     "/editIssue": {
@@ -695,7 +707,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "PATCH operation for /editIssue"
       }
     },
     "/createRelease": {
@@ -757,7 +770,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "POST operation for /createRelease"
       }
     },
     "/deleteRelease": {
@@ -818,7 +832,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "DELETE operation for /deleteRelease"
       }
     },
     "/listCommits": {
@@ -870,7 +885,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listCommits"
       }
     },
     "/listOrgMembers": {
@@ -912,7 +928,8 @@
           {
             "OAuth2": []
           }
-        ]
+        ],
+        "description": "GET operation for /listOrgMembers"
       }
     }
   },
