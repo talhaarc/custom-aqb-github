@@ -40,15 +40,39 @@ jobs:
               routes=app.routes
           )
 
-          # Override OpenAPI version
+          # 1. Override OpenAPI version
           schema["openapi"] = "3.0.3"
 
-          # Add servers section
+          # 2. Add servers section
           schema["servers"] = [
               {"url": "https://api.example.com", "description": "Production server"},
               {"url": "http://localhost:8000", "description": "Local development"}
           ]
 
+          # 3. Add OAuth2 security scheme
+          schema.setdefault("components", {})
+          schema["components"].setdefault("securitySchemes", {})
+          schema["components"]["securitySchemes"]["OAuth2"] = {
+              "type": "oauth2",
+              "flows": {
+                  "authorizationCode": {
+                      "authorizationUrl": "https://github.com/login/oauth/authorize",
+                      "tokenUrl": "https://github.com/login/oauth/access_token",
+                      "scopes": {
+                          "repo": "Full control of private repositories",
+                          "delete_repo": "Delete repositories"
+                      }
+                  }
+              }
+          }
+
+          # 4. Add security requirement to each path+method
+          for path_item in schema.get("paths", {}).values():
+              for method_obj in path_item.values():
+                  if isinstance(method_obj, dict):  # ensure it's a method spec
+                      method_obj["security"] = [{"OAuth2": []}]
+
+          # Write updated schema to file
           with open("openapi.json", "w") as f:
               json.dump(schema, f, indent=2)
           EOF
