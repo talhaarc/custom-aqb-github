@@ -45,8 +45,8 @@ jobs:
 
           # 2. Add servers section
           schema["servers"] = [
-              {"url": "https://api.example.com", "description": "Production server"},
-              {"url": "http://localhost:8000", "description": "Local development"}
+              {"url": "https://ezb7wdyxf656tg7m57crk3qcl40fbzda.lambda-url.us-west-2.on.aws",
+            "description": "Production server"},
           ]
 
           # 3. Add OAuth2 security scheme
