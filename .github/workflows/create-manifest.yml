@@ -67,10 +67,13 @@ jobs:
           }
 
           # 4. Add security requirement to each path+method
-          for path_item in schema.get("paths", {}).values():
-              for method_obj in path_item.values():
-                  if isinstance(method_obj, dict):  # ensure it's a method spec
+          for path, path_item in schema.get("paths", {}).items():
+              for method, method_obj in path_item.items():
+                  if isinstance(method_obj, dict):
                       method_obj["security"] = [{"OAuth2": []}]
+                      # Add description if missing
+                      if "description" not in method_obj or not method_obj["description"]:
+                          method_obj["description"] = f"{method.upper()} operation for {path}"
 
           # Write updated schema to file
           with open("openapi.json", "w") as f:
