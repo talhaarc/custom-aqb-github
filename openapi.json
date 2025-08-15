@@ -18,7 +18,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "requestBody": {
@@ -71,7 +72,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -81,7 +83,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -124,7 +127,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": true,
@@ -133,7 +137,8 @@
               "title": "Tobedeleted User"
             },
             "name": "tobedeleted_user",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'tobedeleted_user' is required for this operation"
           },
           {
             "required": false,
@@ -143,7 +148,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -186,7 +192,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -196,7 +203,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -239,7 +247,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -249,7 +258,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -292,7 +302,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": true,
@@ -301,7 +312,8 @@
               "title": "Username"
             },
             "name": "username",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'username' is required for this operation"
           }
         ],
         "responses": {
@@ -344,7 +356,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -354,7 +367,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -397,7 +411,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -407,7 +422,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -450,7 +466,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": true,
@@ -459,7 +476,8 @@
               "title": "Org"
             },
             "name": "org",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'org' is required for this operation"
           }
         ],
         "responses": {
@@ -502,7 +520,8 @@
               "title": "Org"
             },
             "name": "org",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'org' is required for this operation"
           }
         ],
         "responses": {
@@ -545,7 +564,8 @@
               "title": "Specifieduser"
             },
             "name": "specifiedUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'specifiedUser' is required for this operation"
           }
         ],
         "responses": {
@@ -588,7 +608,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -598,7 +619,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           },
           {
             "required": false,
@@ -608,7 +630,8 @@
               "default": ""
             },
             "name": "title",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'title' is required for this operation"
           }
         ],
         "responses": {
@@ -651,7 +674,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": true,
@@ -660,7 +684,8 @@
               "title": "Issue Number"
             },
             "name": "issue_number",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'issue_number' is required for this operation"
           },
           {
             "required": false,
@@ -670,7 +695,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           },
           {
             "required": false,
@@ -680,7 +706,8 @@
               "default": ""
             },
             "name": "title",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'title' is required for this operation"
           }
         ],
         "responses": {
@@ -723,7 +750,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -733,7 +761,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           },
           {
             "required": false,
@@ -743,7 +772,8 @@
               "default": ""
             },
             "name": "tag_name",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'tag_name' is required for this operation"
           }
         ],
         "responses": {
@@ -786,7 +816,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": true,
@@ -795,7 +826,8 @@
               "title": "Release Id"
             },
             "name": "release_id",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'release_id' is required for this operation"
           },
           {
             "required": false,
@@ -805,7 +837,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -848,7 +881,8 @@
               "title": "Repositoryname"
             },
             "name": "repositoryName",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'repositoryName' is required for this operation"
           },
           {
             "required": false,
@@ -858,7 +892,8 @@
               "default": ""
             },
             "name": "currentUser",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'currentUser' is required for this operation"
           }
         ],
         "responses": {
@@ -901,7 +936,8 @@
               "title": "Org"
             },
             "name": "org",
-            "in": "query"
+            "in": "query",
+            "description": "Parameter 'org' is required for this operation"
           }
         ],
         "responses": {
