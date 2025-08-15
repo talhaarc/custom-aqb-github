@@ -26,12 +26,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Generate OpenAPI schema
+      - name: Generate OpenAPI schema with custom version & servers
         run: |
           python - << 'EOF'
           from fastapi.openapi.utils import get_openapi
-          from app.main import app  # Adjusted path
+          from app.main import app
           import json
 
           schema = get_openapi(
@@ -41,9 +40,36 @@ jobs:
               routes=app.routes
           )
 
+          # Override OpenAPI version
+          schema["openapi"] = "3.0.3"
+
+          # Add servers section
+          schema["servers"] = [
+              {"url": "https://api.example.com", "description": "Production server"},
+              {"url": "http://localhost:8000", "description": "Local development"}
+          ]
+
           with open("openapi.json", "w") as f:
               json.dump(schema, f, indent=2)
           EOF
+
+    #   - name: Generate OpenAPI schema
+    #     run: |
+    #       python - << 'EOF'
+    #       from fastapi.openapi.utils import get_openapi
+    #       from app.main import app  # Adjusted path
+    #       import json
+
+    #       schema = get_openapi(
+    #           title=app.title,
+    #           version=app.version,
+    #           description=app.description,
+    #           routes=app.routes
+    #       )
+
+    #       with open("openapi.json", "w") as f:
+    #           json.dump(schema, f, indent=2)
+    #       EOF
 
       - name: Commit schema to repo
         run: |
