@@ -67,38 +67,38 @@ jobs:
           }
 
           # 4. Add security + operation descriptions + parameter descriptions + response schemas
-            for path, path_item in schema.get("paths", {}).items():
-                for method, method_obj in path_item.items():
-                    if isinstance(method_obj, dict):
-                        # Add OAuth2 security
-                        method_obj["security"] = [{"OAuth2": []}]
+          for path, path_item in schema.get("paths", {}).items():
+            for method, method_obj in path_item.items():
+                if isinstance(method_obj, dict):
+                    # Add OAuth2 security
+                    method_obj["security"] = [{"OAuth2": []}]
 
-                        # Add operation description if missing
-                        if "description" not in method_obj or not method_obj["description"]:
-                            method_obj["description"] = f"{method.upper()} operation for {path}"
+                    # Add operation description if missing
+                    if "description" not in method_obj or not method_obj["description"]:
+                        method_obj["description"] = f"{method.upper()} operation for {path}"
 
-                        # Add generic descriptions for all parameters if missing
-                        if "parameters" in method_obj:
-                            for param in method_obj["parameters"]:
-                                if "description" not in param or not param["description"]:
-                                    param_name = param.get("name", "unknown")
-                                    param["description"] = f"Parameter '{param_name}' is required for this operation"
+                    # Add generic descriptions for all parameters if missing
+                    if "parameters" in method_obj:
+                        for param in method_obj["parameters"]:
+                            if "description" not in param or not param["description"]:
+                                param_name = param.get("name", "unknown")
+                                param["description"] = f"Parameter '{param_name}' is required for this operation"
 
-                        # Ensure all responses have a schema
-                        if "responses" in method_obj:
-                            for status_code, response_obj in method_obj["responses"].items():
-                                if isinstance(response_obj, dict):
-                                    response_obj.setdefault("description", f"Response with status code {status_code}")
-                                    if "content" not in response_obj or not response_obj["content"]:
-                                        response_obj["content"] = {
-                                            "application/json": {
-                                                "schema": {"type": "object"}
-                                            }
+                    # Ensure all responses have a schema
+                    if "responses" in method_obj:
+                        for status_code, response_obj in method_obj["responses"].items():
+                            if isinstance(response_obj, dict):
+                                response_obj.setdefault("description", f"Response with status code {status_code}")
+                                if "content" not in response_obj or not response_obj["content"]:
+                                    response_obj["content"] = {
+                                        "application/json": {
+                                            "schema": {"type": "object"}
                                         }
-                                    else:
-                                        for media_type, media_obj in response_obj["content"].items():
-                                            if "schema" not in media_obj or not media_obj["schema"]:
-                                                media_obj["schema"] = {"type": "object"}
+                                    }
+                                else:
+                                    for media_type, media_obj in response_obj["content"].items():
+                                        if "schema" not in media_obj or not media_obj["schema"]:
+                                            media_obj["schema"] = {"type": "object"}
           # Write updated schema to file
           with open("openapi.json", "w") as f:
               json.dump(schema, f, indent=2)
