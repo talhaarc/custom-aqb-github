@@ -9,19 +9,6 @@
       "post": {
         "summary": "Add Client",
         "operationId": "add_client_addCollab_post",
-        "parameters": [
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "Currentuser",
-              "default": ""
-            },
-            "name": "currentUser",
-            "in": "query",
-            "description": "Parameter 'currentUser' is required for this operation"
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
